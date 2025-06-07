@@ -1,0 +1,74 @@
+[
+  {
+    "SED": "E420008",
+    "SECTOR": "DOS AGUAS",
+    "X": -9.934829028,
+    "Y": -76.24624405,
+    "XY": "-9.93482902783207,-76.2462440510437",
+    "LINK": "https://maps.app.goo.gl/U51Xv9qCuRundo736", 
+    "DIRCCION": "CIUDAD HUANUCO JR - JIRÓN ABTAO C-1 197"
+  },
+  {
+    "SED": "E420254",
+    "SECTOR": "DOS AGUAS",
+    "X": -9.743684287,
+    "Y": -76.09344586,
+    "XY": "-9.7436842867896,-76.0934458640116",
+    "LINK": "https://maps.app.goo.gl/s1WxEpXKGbo8u7TJA", 
+    "DIRCCION": "MAYOBAMBA CA - CARRETERA CARRETERA CENTRAL A TINGO MARIA"
+  },
+  {
+    "SED": "E420980",
+    "SECTOR": "DOS AGUAS",
+    "X": -9.854225416,
+    "Y": -76.60406983,
+    "XY": "-9.85422541554505,-76.60406982703",
+    "LINK": "https://maps.app.goo.gl/TzNCd6megQK8oKJX6", 
+    "DIRCCION": "UR - URBANIZACIÓN CHAVINILLO - YAROWILCA CL - CALLE CALLE CHAVINILLO"
+  },
+  {
+    "SED": "E421086",
+    "SECTOR": "DOS AGUAS",
+    "X": -9.595229177,
+    "Y": -76.7152616,
+    "XY": "-9.59522917669805,-76.7152615968594",
+    "LINK": "https://maps.app.goo.gl/GqdqpFVhL1CrWWSc9", 
+    "DIRCCION": "QUIVILLA CA - CARRETERA QUIVILLA"
+  },
+  {
+    "SED": "E421602",
+    "SECTOR": "DOS AGUAS",
+    "X": -9.915537569,
+    "Y": -76.61531265,
+    "XY": "-9.91553756906545,-76.6153126503057",
+    "LINK": "https://maps.app.goo.gl/Xm3P2W2gHKYqhheh9", 
+    "DIRCCION": "BUENOS AIRES DE CHAINAS CA - CARRETERA BUENOS AIRES DE CHAINAS"
+  },
+  {
+    "SED": "E421604",
+    "SECTOR": "DOS AGUAS",
+    "X": -9.844807222,
+    "Y": -76.59221945,
+    "XY": "-9.84480722167604,-76.5922194484615",
+    "LINK": "https://maps.app.goo.gl/Q1bKnnEXv2SB5T3i7", 
+    "DIRCCION": "DOS AGUAS CA - CARRETERA DOS AGUAS"
+  },
+  {
+    "SED": "E450256",
+    "SECTOR": "DOS AGUAS",
+    "X": -9.936400414,
+    "Y": -76.24724654,
+    "XY": "-9.93640041392899,-76.2472465405466",
+    "LINK": "https://maps.app.goo.gl/YnuZbGgjLjTpwcbS8", 
+    "DIRCCION": "CONSTRUCCIONES DE ACERO JR - JIRÓN JIRON ABTAO"
+  },
+  {
+    "SED": "E450792",
+    "SECTOR": "DOS AGUAS",
+    "X": -9.893036967,
+    "Y": -76.23006,
+    "XY": "-9.89303696730736,-76.2300600046114",
+    "LINK": "https://maps.app.goo.gl/wHaUSgp9QjA7QmUH7", 
+    "DIRCCION": "UR - URBANIZACIÓN URB.LAS LOMAS_COLPA CL - CALLE CALLE DOS AGUAS"
+  }
+]

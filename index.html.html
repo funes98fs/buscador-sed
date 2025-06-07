@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Buscar por Código SED</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f9f9f9; }
+    input, button { padding: 10px; width: 100%; margin-top: 10px; }
+    .resultado { margin-top: 20px; background: white; border: 1px solid #ddd; padding: 15px; border-radius: 8px; }
+    a { color: blue; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <h1>Buscar por Código SED</h1>
+  <input type="text" id="searchInput" placeholder="Escribe un código SED (ej: E421602)">
+  <button onclick="buscar()">Buscar</button>
+
+  <div id="resultados"></div>
+
+  <script>
+    let datos = [];
+
+    // Cargar datos JSON
+    fetch('sed_datos.json')
+      .then(response => response.json())
+      .then(jsonData => {
+        datos = jsonData;
+        console.log("Datos cargados:", datos);
+      })
+      .catch(err => {
+        console.error("Error al cargar sed_datos.json:", err);
+      });
+
+    function buscar() {
+      const texto = document.getElementById("searchInput").value.trim().toUpperCase();
+      const resultadoDiv = document.getElementById("resultados");
+      resultadoDiv.innerHTML = "";
+
+      if (!texto) {
+        resultadoDiv.innerHTML = "<p>Escribe un código SED para buscar.</p>";
+        return;
+      }
+
+      const resultados = datos.filter(obj => obj.SED && obj.SED.toUpperCase().includes(texto));
+
+      if (resultados.length === 0) {
+        resultadoDiv.innerHTML = "<p>No se encontraron resultados.</p>";
+        return;
+      }
+
+      resultados.forEach(obj => {
+        resultadoDiv.innerHTML += `
+          <div class="resultado">
+            <strong>SED:</strong> ${obj.SED}<br>
+            <strong>Dirección:</strong> ${obj.DIRCCION || 'No disponible'}<br>
+            <a href="${obj.LINK}" target="_blank">Ver en Google Maps</a>
+          </div>
+        `;
+      });
+    }
+  </script>
+
+</body>
+</html>
