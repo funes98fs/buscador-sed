@@ -4,33 +4,64 @@
   <meta charset="UTF-8">
   <title>Buscar por Código SED</title>
   <style>
-    body { font-family: Arial; padding: 20px; background: #f9f9f9; }
-    input, button { padding: 10px; width: 100%; margin-top: 10px; }
-    .resultado { margin-top: 20px; background: white; border: 1px solid #ddd; padding: 15px; border-radius: 8px; }
-    a { color: blue; text-decoration: none; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      color: #333;
+    }
+    input, button {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    #resultados {
+      margin-top: 20px;
+    }
+    .resultado-item {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+    .resultado-item strong {
+      color: #007BFF;
+    }
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 
   <h1>Buscar por Código SED</h1>
-  <input type="text" id="searchInput" placeholder="Escribe un código SED (ej: E421602)">
+  <input type="text" id="searchInput" placeholder="Escribe un código SED (ej: E451011)">
   <button onclick="buscar()">Buscar</button>
 
   <div id="resultados"></div>
 
+  <!-- Cargar PapaParse para leer CSV -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script> 
   <script>
     let datos = [];
 
-    // Cargar datos JSON
-    fetch('sed_datos.json')
-      .then(response => response.json())
-      .then(jsonData => {
-        datos = jsonData;
+    // Cargar CSV y convertirlo a objetos
+    Papa.parse("datos.sed25.csv", {
+      download: true,
+      header: true, // El CSV tiene encabezado
+      complete: function(results) {
+        datos = results.data; // Datos parseados automáticamente
         console.log("Datos cargados:", datos);
-      })
-      .catch(err => {
-        console.error("Error al cargar sed_datos.json:", err);
-      });
+      }
+    });
 
     function buscar() {
       const texto = document.getElementById("searchInput").value.trim().toUpperCase();
@@ -42,7 +73,9 @@
         return;
       }
 
-      const resultados = datos.filter(obj => obj.SED && obj.SED.toUpperCase().includes(texto));
+      const resultados = datos.filter(obj =>
+        obj.ntcse && obj.ntcse.toUpperCase().includes(texto)
+      );
 
       if (resultados.length === 0) {
         resultadoDiv.innerHTML = "<p>No se encontraron resultados.</p>";
@@ -50,11 +83,17 @@
       }
 
       resultados.forEach(obj => {
+        const lat = parseFloat(obj.wgsy);
+        const lng = parseFloat(obj.wgsx);
+        const linkMapa = lat && lng ? `https://www.google.com/maps?q=${lat},${lng}` : "#"; 
+
         resultadoDiv.innerHTML += `
-          <div class="resultado">
-            <strong>SED:</strong> ${obj.SED}<br>
-            <strong>Dirección:</strong> ${obj.DIRCCION || 'No disponible'}<br>
-            <a href="${obj.LINK}" target="_blank">Ver en Google Maps</a>
+          <div class="resultado-item">
+            <strong>Código SED:</strong> ${obj.ntcse}<br>
+            <strong>Dirección:</strong> ${obj.direccion || 'No disponible'}<br>
+            <strong>Latitud:</strong> ${obj.wgsy}<br>
+            <strong>Longitud:</strong> ${obj.wgsx}<br>
+            <a href="${linkMapa}" target="_blank">Ver en Google Maps</a>
           </div>
         `;
       });
